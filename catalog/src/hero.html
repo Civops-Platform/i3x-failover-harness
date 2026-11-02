@@ -1,0 +1,70 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<style>.mono, .mono text { font-family: "IBM Plex Mono"; white-space: pre; } .sans { font-family: "IBM Plex Sans"; }</style></head>
+<body>
+<div class="left">
+  <img class="logo" src="logo-dark.svg" alt="CivOps">
+  <div class="kicker">OPEN SOURCE · i3X FAILOVER HARNESS</div>
+  <h1 style="font-size:70px">Pull the plug.<br><span>Count the writes.</span></h1>
+  <div class="tag">Kills a node of any redundant i3X server on purpose, then checks what a client actually saw.</div>
+  <div class="chips">
+    <span class="chip on">CESMII suite under failover</span>
+    <span class="chip">Write-RTO drill</span>
+    <span class="chip">Exactly-once check</span>
+    <span class="chip">MIT</span>
+  </div>
+</div>
+<svg class="art" viewBox="0 0 820 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2563eb" stop-opacity=".45"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0"/></radialGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#93c5fd"/></marker>
+  </defs>
+  <circle cx="420" cy="360" r="330" fill="url(#glow)"/>
+
+  <!-- the client -->
+  <g transform="translate(300 40)">
+    <rect width="220" height="76" rx="14" fill="#172338" stroke="#334a6e" stroke-width="2"/>
+    <text x="110" y="34" text-anchor="middle" class="sans" font-weight="600" font-size="20" fill="#f1f5f9">Harness client</text>
+    <text x="110" y="58" text-anchor="middle" class="mono" font-size="13" fill="#a5b4c8">write · Idempotency-Key</text>
+  </g>
+  <path d="M370 120 C 330 170, 250 170, 230 214" stroke="#ef4444" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+  <path d="M450 120 C 490 170, 590 170, 610 206" stroke="#93c5fd" stroke-width="3" fill="none" marker-end="url(#arr)"/>
+
+  <!-- nodes -->
+  <g transform="translate(90 216)">
+    <rect width="240" height="110" rx="14" fill="#172338" stroke="#ef4444" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="120" y="40" text-anchor="middle" class="sans" font-weight="600" font-size="22" fill="#f1f5f9">node A</text>
+    <text x="120" y="70" text-anchor="middle" class="mono" font-size="14" fill="#ef4444">$ docker kill node-a</text>
+    <text x="120" y="94" text-anchor="middle" class="mono" font-size="13" fill="#6b7d96">your command, any vendor</text>
+  </g>
+  <g transform="translate(330 216)"><circle r="18" fill="#0f172a" stroke="#ef4444" stroke-width="3"/><path d="M-7 -7 L7 7 M7 -7 L-7 7" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/></g>
+  <g transform="translate(490 216)">
+    <rect width="240" height="110" rx="14" fill="#172338" stroke="#22c55e" stroke-width="2"/>
+    <text x="120" y="40" text-anchor="middle" class="sans" font-weight="600" font-size="22" fill="#f1f5f9">node B</text>
+    <text x="120" y="70" text-anchor="middle" class="mono" font-size="14" fill="#22c55e">takes the writes</text>
+    <text x="120" y="94" text-anchor="middle" class="mono" font-size="13" fill="#6b7d96">CESMII suite still passing</text>
+  </g>
+
+  <!-- RTO scale -->
+  <g transform="translate(60 400)">
+    <text x="0" y="0" class="mono" font-size="15" fill="#6b7d96">write RTO over 20 kills, seconds</text>
+    <rect x="0" y="22" width="700" height="40" rx="8" fill="#131e33" stroke="#334a6e"/>
+    <rect x="0" y="22" width="247" height="40" rx="8" fill="#22c55e" fill-opacity=".22" stroke="#22c55e"/>
+    <line x1="700" x2="700" y1="12" y2="72" stroke="#f59e0b" stroke-width="3"/>
+    <text x="700" y="94" text-anchor="end" class="mono" font-size="14" fill="#f59e0b">target 30 s</text>
+    <line x1="247" x2="247" y1="12" y2="72" stroke="#22c55e" stroke-width="3"/>
+    <text x="247" y="94" text-anchor="middle" class="mono" font-size="14" fill="#22c55e">worst 10.6 s</text>
+    <text x="0" y="94" class="mono" font-size="14" fill="#a5b4c8">0</text>
+  </g>
+
+  <!-- the count -->
+  <g class="mono" text-anchor="middle">
+    <g transform="translate(60 540)"><rect width="160" height="110" rx="14" fill="#172338" stroke="#334a6e"/><text x="80" y="58" font-size="38" font-weight="600" fill="#f1f5f9">20</text><text x="80" y="88" font-size="14" fill="#a5b4c8">kills</text></g>
+    <g transform="translate(240 540)"><rect width="160" height="110" rx="14" fill="#172338" stroke="#334a6e"/><text x="80" y="58" font-size="38" font-weight="600" fill="#f1f5f9">940</text><text x="80" y="88" font-size="14" fill="#a5b4c8">writes acked</text></g>
+    <g transform="translate(420 540)"><rect width="160" height="110" rx="14" fill="#172338" stroke="#22c55e"/><text x="80" y="58" font-size="38" font-weight="600" fill="#22c55e">0</text><text x="80" y="88" font-size="14" fill="#a5b4c8">lost</text></g>
+    <g transform="translate(600 540)"><rect width="160" height="110" rx="14" fill="#172338" stroke="#22c55e"/><text x="80" y="58" font-size="38" font-weight="600" fill="#22c55e">0</text><text x="80" y="88" font-size="14" fill="#a5b4c8">duplicated</text></g>
+  </g>
+  <text x="410" y="700" text-anchor="middle" class="mono" font-size="14" fill="#6b7d96">measured against two i3X Nexus server nodes, synthetic data</text>
+</svg>
+<div class="foot">CivOps · civops.io · MIT licensed · works with any i3X 1.0 server</div>
+</body></html>

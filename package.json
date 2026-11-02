@@ -1,0 +1,24 @@
+{
+  "name": "@civops/i3x-failover-harness",
+  "version": "1.0.0",
+  "description": "Proves a redundant CESMII i3X 1.0 server keeps working through a node failure: the conformance suite under a kill, and a write-RTO drill with exactly-once reconciliation",
+  "license": "MIT",
+  "author": "CivOps (https://civops.io)",
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "bin": { "i3x-failover": "src/cli.ts" },
+  "keywords": ["i3x", "cesmii", "conformance", "failover", "redundancy", "high-availability", "smart-manufacturing"],
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "drill": "node --import tsx src/cli.ts drill",
+    "conformance": "node --import tsx src/cli.ts conformance"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  }
+}
